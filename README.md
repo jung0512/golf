@@ -130,9 +130,6 @@ while문을 돌려 마지막 값까지 표를 만들어 값을 넣어준다
 	</section>
 ```
 회원명과 강의명은 데이터베이스에서 가져와 체크박스식으로 선택한다 <br>
-회원명 선택시 회원번호가 자동으로 입력된고<br>
-강사명 선택시 수강료가 자동으로 입력된다 만약 회원번호가 20000이상인 경우 수강료를 50%로 할인한다<br>
-
 ```javascript
 function chkVal() {
 		var cls = document.classData;
@@ -166,6 +163,11 @@ function vDisplay(code) {
 		document.classData.class_name.value = "none";
 		document.classData.tuition.value = "";
 	}
+```
+회원명을 선택시 회원번호를 회원명에 맞는 회원번호를 자동으로 입력해준다<br>
+![image](https://user-images.githubusercontent.com/102035198/207220940-045090b6-3cc7-4988-a0c8-a4a893b484ba.png)<br>
+![image](https://user-images.githubusercontent.com/102035198/207220962-f5c6f5e2-7aa5-4297-b18b-bffef9a0f85e.png)<br>
+```
 	function calTuition(tcode) {
 		var mbr = document.classData.c_no.value;
 		if(!mbr) {
@@ -198,6 +200,13 @@ function vDisplay(code) {
 			document.classData.tuition.value = salePrice;
 		}
 	}
+```
+회원명 선택 후 강의명을 선택하면 수강료가 강의명의 수강료로 입력된다<br>
+회원번호가 20000이상인 경우 알림창이 나오면서 50%로 할인된다<br>
+![image](https://user-images.githubusercontent.com/102035198/207220790-ffb120d7-db63-491e-b085-c465b962ae12.png)<br>
+![image](https://user-images.githubusercontent.com/102035198/207220885-2c971e90-a60d-4b2d-ba31-b62b6ace238e.png)<br>
+![image](https://user-images.githubusercontent.com/102035198/207220832-e5b8f7ee-4e82-4d35-8d39-2d9a547bf379.png)<br>
+```
 	function re() {
 		alert("정보를 지우고 처음부터 다시 입력 합니다!");
 		document.classData.reset();
