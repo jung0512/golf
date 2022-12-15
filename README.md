@@ -1,5 +1,5 @@
 # golf
-golf
+골프연습장 회원관리 프로그램
 # sql
 TBL_TEACHER_202101 테이블
 ```
