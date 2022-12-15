@@ -249,3 +249,48 @@ ps.setString(1, request.getParameter("month"));
 Integer.parseInt를 이용하여 int형으로 저장하여 준다<br>
 ![image](https://user-images.githubusercontent.com/102035198/207779735-d6e2453d-a337-40df-acb7-6a157455430d.png)<br>
 입력한 데이터가 들어간 것을 알 수 있다
+# 회원정보조회
+결과화면<br>
+![image](https://user-images.githubusercontent.com/102035198/207788760-81a4620d-6970-4588-a7f3-9c92b2e03a2d.png)<br>
+## 쿼리문
+```
+select substr(resist_month,1,4)||'년'||substr(resist_month,5,2)|| '월' resist_month,
+c.c_no, m.C_NAME, t.class_name, c.class_area,
+to_char(class_price,'L000,000')tuition, m.grade
+from tbl_class_202101 c, tbl_member_202101 m, tbl_teacher_202101 t
+where c.c_no = m.c_no and c.TEACHAER_CODE = t.teacher_code;
+```
+외부 조인을 이용하여 수강월, 회원번호, 회원명, 강의명, 강의장소, 수강료, 등급을 불러온다<br>
+Primary key가 두개인 클래스 테이블을 이용하여 중복된 정보도 가져올 수 있게 묶어주었다<br>
+## html
+```
+<h2>회원정보조회</h2><br>
+	<table class="table_line">
+				<tr>
+					<th>수강월</th>
+					<th>회원번호</th>
+					<th>회원명</th>
+					<th>강의명</th>
+					<th>강의장소</th>
+					<th>수강료</th>
+					<th>등급</th>
+					
+				</tr>
+				<%
+					while(rs.next()) {
+				%>
+				<tr class="center">
+					<td><%= rs.getString(1) %></td>
+					<td><%= rs.getString(2) %></td>
+					<td><%= rs.getString(3) %></td>
+					<td><%= rs.getString(4) %></td>
+					<td><%= rs.getString(5) %></td>
+					<td><%= rs.getString(6) %></td>
+					<td><%= rs.getString(7) %></td>
+				</tr>
+				<%
+					}
+				%>
+			</table>	
+```
+while을 이용하여 회원정보가 없을 때까지 테이블을 생성하여 준다<br>
