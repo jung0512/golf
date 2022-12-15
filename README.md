@@ -213,3 +213,39 @@ function vDisplay(code) {
 		document.classData.resist_month.focus();
 	}
 ```
+![image](https://user-images.githubusercontent.com/102035198/207779687-40b2756c-5a39-422b-ab94-678e5e111eaa.png)<br>
+정보를 입력한다<br>
+join_p페이지
+```뷰페이지
+<%
+	request.setCharacterEncoding("UTF-8");
+	String sql = "insert into TBL_CLASS_202101 values(?,?,?,?,?)";
+
+	Connection conn = DBConnect.getConnection();
+	PreparedStatement ps = conn.prepareStatement(sql);
+	
+	ps.setString(1, request.getParameter("month"));
+	ps.setString(2, request.getParameter("c_no"));
+	ps.setString(3, request.getParameter("area"));
+	ps.setInt(4, Integer.parseInt(request.getParameter("price")));
+	ps.setString(5, request.getParameter("class_name"));
+	
+	ps.executeUpdate();
+%>
+```
+```
+String sql = "insert into TBL_CLASS_202101 values(?,?,?,?,?)";
+```
+insert로 입력한 정보를 테이블에 널어준다<br>
+정보를 입력하는 개수는 5개이므로 ?로 자리수를 설정해준다<br>
+```
+ps.setString(1, request.getParameter("month"));
+	ps.setString(2, request.getParameter("c_no"));
+	ps.setString(3, request.getParameter("area"));
+	ps.setInt(4, Integer.parseInt(request.getParameter("price")));
+	ps.setString(5, request.getParameter("class_name"));
+```
+4번째를 제외하고 나머지는 String형으로 저장하고, 4번쨰는 int형으로 저장해야 하므로<br>
+Integer.parseInt를 이용하여 int형으로 저장하여 준다<br>
+![image](https://user-images.githubusercontent.com/102035198/207779735-d6e2453d-a337-40df-acb7-6a157455430d.png)<br>
+입력한 데이터가 들어간 것을 알 수 있다
