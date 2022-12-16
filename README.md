@@ -293,7 +293,8 @@ to_char(class_price,'L000,000')tuition, m.grade
 from tbl_class_202101 c, tbl_member_202101 m, tbl_teacher_202101 t
 where c.c_no = m.c_no and c.TEACHAER_CODE = t.teacher_code;
 ```
-외부 조인을 이용하여 수강월, 회원번호, 회원명, 강의명, 강의장소, 수강료, 등급을 불러온다<br>
+기본키를 이용하여 조인시켜준다<br>
+class테이블을 이용하여 member테이블의 회원번호와 조인해주고 teachar테이블의 강사코드와 class의 강사코드를 조인해준다<br>
 ## html
 ```
 <h2>회원정보조회</h2><br>
@@ -326,3 +327,48 @@ where c.c_no = m.c_no and c.TEACHAER_CODE = t.teacher_code;
 			</table>	
 ```
 while을 이용하여 회원정보가 없을 때까지 테이블을 생성하여 준다<br>
+# 강사매출조회
+```
+<%
+	String sql = "select t.teacher_code, t.teacher_name, t.class_name, sum(c.tuition)as tuition " 
+				+ "from tbl_teacher_202201 t, tbl_class_202201 c "
+				+ "where t.teacher_code = c.teacher_code "
+				+ "group by t.teacher_code, t.teacher_name, t.class_name,c.tuition " 
+				+ "order by teacher_code";
+	
+	Connection conn = DBConnect.getConnection();
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	ResultSet rs = pstmt.executeQuery();
+%>
+```
+teacher테이블과 class테이블의 teacher_code로 조인한다 <br>
+수강료를 sum함수로 더한다<br>
+teacher_code, teacher_name, class_name, tuition들을 group by해준다<br>
+order by teacher_code로 정렬 해준다<br>
+```
+<section class="section">
+<h2 style="text-align: center;">회원정보조회</h2><br>
+	<table class="table_line">
+				<tr>
+					<th>강사코드</th>
+					<th>강의명</th>
+					<th>강사명</th>
+					<th>총매출</th>
+				</tr>
+				<%
+					while(rs.next()) {
+				%>
+				<tr class="center">
+					<td><%= rs.getString(1) %></td>
+					<td><%= rs.getString(2) %></td>
+					<td style="text-align: right;"><%= rs.getString(3) %></td>
+					<td style="text-align: right;">\<%= rs.getString(4) %></td>
+				</tr>
+				<%
+					}
+				%>
+			</table>	
+</section>
+```
+select로 조회한 결과를 출력해주고 강사명과 강의명은 오른쪽 정렬해준다<br>
+![KakaoTalk_20221216_113023336](https://user-images.githubusercontent.com/102035198/208009335-c3df0416-af93-4b6b-8024-296834ec05ad.png)<br>
