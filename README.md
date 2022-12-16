@@ -196,7 +196,8 @@ function vDisplay(code) {
 		document.classData.tuition.value = "";
 	}
 ```
-회원명을 선택시 회원번호를 회원명에 맞는 회원번호를 자동으로 입력해준다<br>
+옵션에서 회원번호를 가져와 매개변수로 지정 후 매개변수와 맞는 회원번호를 회원번호칸에 넣어준다<br>
+회원번호가 바뀔때마다 강명과 수강료를 초기화 시켜준다<br>
 ![image](https://user-images.githubusercontent.com/102035198/207220940-045090b6-3cc7-4988-a0c8-a4a893b484ba.png)<br>
 ![image](https://user-images.githubusercontent.com/102035198/207220962-f5c6f5e2-7aa5-4297-b18b-bffef9a0f85e.png)<br>
 ```
