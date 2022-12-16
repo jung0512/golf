@@ -249,18 +249,18 @@ function vDisplay(code) {
 ![image](https://user-images.githubusercontent.com/102035198/207779687-40b2756c-5a39-422b-ab94-678e5e111eaa.png)<br>
 정보를 입력한다<br>
 join_p페이지
-```뷰페이지
+```백그라운드페이지
 <%
 	request.setCharacterEncoding("UTF-8");
-	String sql = "insert into TBL_CLASS_202101 values(?,?,?,?,?)";
+	String sql = "insert into TBL_CLASS_202201 values(?,?,?,?,?)";
 
 	Connection conn = DBConnect.getConnection();
 	PreparedStatement ps = conn.prepareStatement(sql);
 	
-	ps.setString(1, request.getParameter("month"));
+	ps.setString(1, request.getParameter("resist_month"));
 	ps.setString(2, request.getParameter("c_no"));
-	ps.setString(3, request.getParameter("area"));
-	ps.setInt(4, Integer.parseInt(request.getParameter("price")));
+	ps.setString(3, request.getParameter("class_area"));
+	ps.setInt(4, Integer.parseInt(request.getParameter("tuition")));
 	ps.setString(5, request.getParameter("class_name"));
 	
 	ps.executeUpdate();
