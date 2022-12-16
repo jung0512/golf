@@ -287,11 +287,11 @@ Integer.parseInt를 이용하여 int형으로 저장하여 준다<br>
 ![image](https://user-images.githubusercontent.com/102035198/207788760-81a4620d-6970-4588-a7f3-9c92b2e03a2d.png)<br>
 ## 쿼리문
 ```
-select substr(resist_month,1,4)||'년'||substr(resist_month,5,2)|| '월' resist_month,
-c.c_no, m.C_NAME, t.class_name, c.class_area,
-to_char(class_price,'L000,000')tuition, m.grade
-from tbl_class_202101 c, tbl_member_202101 m, tbl_teacher_202101 t
-where c.c_no = m.c_no and c.TEACHAER_CODE = t.teacher_code;
+select substr(c.resist_month,1,4)||'년'||substr(c.resist_month,5,2)|| '월' resist_month,
+c.c_no, m.C_NAME, t.class_name, c.class_area, 
+to_char(c.tuition,'L000,000')tuition, m.grade 
+from tbl_class_202201 c, tbl_member_202201 m, tbl_teacher_202201 t
+where c.c_no = m.c_no and c.TEACHER_CODE = t.teacher_code;
 ```
 기본키를 이용하여 조인시켜준다<br>
 class테이블을 이용하여 member테이블의 회원번호와 조인해주고 teachar테이블의 강사코드와 class의 강사코드를 조인해준다<br>
