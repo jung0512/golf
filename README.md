@@ -293,7 +293,6 @@ from tbl_class_202101 c, tbl_member_202101 m, tbl_teacher_202101 t
 where c.c_no = m.c_no and c.TEACHAER_CODE = t.teacher_code;
 ```
 외부 조인을 이용하여 수강월, 회원번호, 회원명, 강의명, 강의장소, 수강료, 등급을 불러온다<br>
-Primary key가 두개인 클래스 테이블을 이용하여 중복된 정보도 가져올 수 있게 묶어주었다<br>
 ## html
 ```
 <h2>회원정보조회</h2><br>
